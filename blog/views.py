@@ -15,7 +15,6 @@ def post_list(request: HttpRequest) -> HttpResponse:
 def post_detail(request: HttpRequest, year: int, month: int, day: int, post: Post) -> HttpResponse:
     post = get_object_or_404(
         Post,
-        id=id,
         status=Post.Status.PUBLISHED,
         slug=post,
         publish__year=year,
