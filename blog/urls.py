@@ -11,4 +11,5 @@ urlpatterns = [
         views.post_detail, 
         name='post_detail'
     ),
+    path('<int:pist_id>/share/', views.post_share, name='post_share'),
 ]
