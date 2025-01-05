@@ -21,7 +21,11 @@ def post_share(request: HttpRequest, post_id: int) -> HttpResponse:
         form = EmailPostForm()
     return render(
         request,
-        'blog/post/share.html'
+        'blog/post/share.html',
+        {
+            'post': post,
+            'form': form
+        }
     )
 
 class PostListView(ListView):
