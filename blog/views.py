@@ -3,7 +3,26 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpRequest, HttpResponse
 from .models import Post
 from django.views.generic import ListView
+from .forms import EmailPostForm
 
+
+def post_share(request: HttpRequest, post_id: int) -> HttpResponse:
+    post = get_object_or_404(
+        Post,
+        id=post_id,
+        status=Post.Status.PUBLISHED
+    )
+
+    if request.method == 'POST':
+        form = EmailPostForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+    else:
+        form = EmailPostForm()
+    return render(
+        request,
+        'blog/post/share.html'
+    )
 
 class PostListView(ListView):
 
