@@ -111,8 +111,15 @@ def post_detail(request: HttpRequest, year: int, month: int, day: int, post: Pos
         publish__day=day,
     )
 
+    comments = post.comments.filter(active=True)
+    form = CommentForm()
+
     return render(
         request,
         'blog/post/detail.html',
-        {'post': post}
+        {
+            'post': post,
+            'comments': comments,
+            'form': form
+        }
     )
